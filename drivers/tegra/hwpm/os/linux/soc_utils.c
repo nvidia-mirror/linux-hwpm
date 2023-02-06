@@ -39,7 +39,7 @@ static struct hwpm_soc_chip_info chip_info = {
 };
 static bool chip_info_initialized;
 
-const struct hwpm_soc_chip_info t234_chip_info = {
+static const struct hwpm_soc_chip_info t234_soc_chip_info = {
 	.chip_id = 0x23,
 	.chip_id_rev = 0x4,
 	.platform = PLAT_SI,
@@ -70,9 +70,9 @@ int tegra_hwpm_init_chip_info(struct tegra_hwpm_os_linux *hwpm_linux)
 #endif
 	/* Get device node info from device tree */
 	if (of_machine_is_compatible("nvidia,tegra234")) {
-		chip_info.chip_id = t234_chip_info.chip_id;
-		chip_info.chip_id_rev = t234_chip_info.chip_id_rev;
-		chip_info.platform = t234_chip_info.platform;
+		chip_info.chip_id = t234_soc_chip_info.chip_id;
+		chip_info.chip_id_rev = t234_soc_chip_info.chip_id_rev;
+		chip_info.platform = t234_soc_chip_info.platform;
 
 		goto complete;
 	}
