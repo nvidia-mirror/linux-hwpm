@@ -28,16 +28,7 @@
 #include <linux/bits.h>
 #include <os/linux/log.h>
 #else
-void tegra_hwpm_err_impl(struct tegra_soc_hwpm *hwpm,
-	const char *func, int line, const char *fmt, ...)
-{
-	return;
-}
-void tegra_hwpm_dbg_impl(struct tegra_soc_hwpm *hwpm,
-	u32 dbg_mask, const char *func, int line, const char *fmt, ...)
-{
-	return;
-}
+#include <os/qnx/log.h>
 #endif
 
 #define TEGRA_SOC_HWPM_MODULE_NAME	"tegra-soc-hwpm"
@@ -85,6 +76,7 @@ enum tegra_soc_hwpm_log_type {
 /* Kmem debug prints */
 #define hwpm_dbg_kmem			BIT(17)
 
+#ifdef __KERNEL__
 
 #define tegra_hwpm_err(hwpm, fmt, arg...)				\
 	tegra_hwpm_err_impl(hwpm, __func__, __LINE__, fmt, ##arg)
@@ -92,5 +84,13 @@ enum tegra_soc_hwpm_log_type {
 	tegra_hwpm_dbg_impl(hwpm, dbg_mask, __func__, __LINE__, fmt, ##arg)
 #define tegra_hwpm_fn(hwpm, fmt, arg...)				\
 	tegra_hwpm_dbg_impl(hwpm, hwpm_fn, __func__, __LINE__, fmt, ##arg)
+#else
+#define tegra_hwpm_err(hwpm, fmt, arg...)                               \
+        tegra_hwpm_err_impl(hwpm, fmt, ##arg)
+#define tegra_hwpm_dbg(hwpm, dbg_mask, fmt, arg...)                     \
+        tegra_hwpm_dbg_impl(hwpm, dbg_mask, fmt, ##arg)
+#define tegra_hwpm_fn(hwpm, fmt, arg...)                                \
+        tegra_hwpm_dbg_impl(hwpm, hwpm_fn, fmt, ##arg)
+#endif
 
 #endif /* TEGRA_HWPM_LOG_H */

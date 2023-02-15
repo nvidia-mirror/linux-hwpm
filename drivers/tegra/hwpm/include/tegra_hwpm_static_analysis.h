@@ -42,7 +42,7 @@
 static inline u32 tegra_hwpm_safe_add_u32(u32 ui_a, u32 ui_b)
 {
 	if ((UINT_MAX - ui_a) < ui_b) {
-		WARN_ON(true);
+		BUG();
 		return 0U;
 	} else {
 		return ui_a + ui_b;
@@ -65,7 +65,7 @@ static inline u32 tegra_hwpm_safe_add_u32(u32 ui_a, u32 ui_b)
 static inline u64 tegra_hwpm_safe_add_u64(u64 ul_a, u64 ul_b)
 {
 	if ((ULONG_MAX - ul_a) < ul_b) {
-		WARN_ON(true);
+		BUG();
 		return 0U;
 	} else {
 		return ul_a + ul_b;
@@ -87,7 +87,7 @@ static inline u64 tegra_hwpm_safe_add_u64(u64 ul_a, u64 ul_b)
 static inline u32 tegra_hwpm_safe_sub_u32(u32 ui_a, u32 ui_b)
 {
 	if (ui_a < ui_b) {
-		WARN_ON(true);
+		BUG();
 		return 0U;
 	} else {
 		return ui_a - ui_b;
@@ -109,7 +109,7 @@ static inline u32 tegra_hwpm_safe_sub_u32(u32 ui_a, u32 ui_b)
 static inline u64 tegra_hwpm_safe_sub_u64(u64 ul_a, u64 ul_b)
 {
 	if (ul_a < ul_b) {
-		WARN_ON(true);
+		BUG();
 		return 0U;
 	} else {
 		return ul_a - ul_b;
@@ -137,7 +137,7 @@ static inline u32 tegra_hwpm_safe_mult_u32(u32 ui_a, u32 ui_b)
 	if ((ui_a == 0U) || (ui_b == 0U)) {
 		return 0U;
 	} else if (ui_a > (UINT_MAX / ui_b)) {
-		WARN_ON(true);
+		BUG();
 		return 0U;
 	} else {
 		return ui_a * ui_b;
@@ -165,7 +165,7 @@ static inline u64 tegra_hwpm_safe_mult_u64(u64 ul_a, u64 ul_b)
 	if ((ul_a == 0UL) || (ul_b == 0UL)) {
 		return 0UL;
 	} else if (ul_a > (ULONG_MAX / ul_b)) {
-		WARN_ON(true);
+		BUG();
 		return 0U;
 	} else {
 		return ul_a * ul_b;
@@ -185,7 +185,7 @@ static inline u64 tegra_hwpm_safe_mult_u64(u64 ul_a, u64 ul_b)
 static inline u32 tegra_hwpm_safe_cast_u64_to_u32(u64 ul_a)
 {
 	if (ul_a > UINT_MAX) {
-		WARN_ON(true);
+		BUG();
 		return 0U;
 	} else {
 		return (u32)ul_a;
@@ -205,7 +205,7 @@ static inline u32 tegra_hwpm_safe_cast_u64_to_u32(u64 ul_a)
 static inline u64 tegra_hwpm_safe_cast_s32_to_u64(s32 si_a)
 {
 	if (si_a < 0) {
-		WARN_ON(true);
+		BUG();
 		return 0U;
 	} else {
 		return (u64)si_a;
@@ -226,7 +226,7 @@ static inline u64 tegra_hwpm_safe_cast_s32_to_u64(s32 si_a)
 static inline s32 tegra_hwpm_safe_cast_u64_to_s32(u64 ul_a)
 {
 	if (ul_a > tegra_hwpm_safe_cast_s32_to_u64(INT_MAX)) {
-		WARN_ON(true);
+		BUG();
 		return 0;
 	} else {
 		return (s32)ul_a;
@@ -247,7 +247,7 @@ static inline s32 tegra_hwpm_safe_cast_u64_to_s32(u64 ul_a)
 static inline u8 tegra_hwpm_safe_cast_u32_to_u8(u32 ui_a)
 {
 	if (ui_a > U8_MAX) {
-		WARN_ON(true);
+		BUG();
 		return 0U;
 	} else {
 		return (u8)ui_a;

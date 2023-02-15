@@ -34,6 +34,8 @@
 #include <linux/limits.h>
 #include <linux/kernel.h>
 #endif
+#else
+#include <tegra_hwpm_qnx_types.h>
 #endif
 
 #endif /* TEGRA_HWPM_TYPES_H */

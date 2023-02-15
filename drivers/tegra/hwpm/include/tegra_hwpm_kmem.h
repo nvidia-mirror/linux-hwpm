@@ -27,20 +27,7 @@
 #ifdef __KERNEL__
 #include <os/linux/kmem.h>
 #else
-void *tegra_hwpm_kzalloc_impl(struct tegra_soc_hwpm *hwpm, size_t size)
-{
-	return NULL;
-}
-
-void *tegra_hwpm_kcalloc_impl(struct tegra_soc_hwpm *hwpm, u32 num, size_t size)
-{
-	return NULL;
-}
-
-void tegra_hwpm_kfree_impl(struct tegra_soc_hwpm *hwpm, void *addr)
-{
-	return;
-}
+#include <os/qnx/kmem.h>
 #endif
 
 #define tegra_hwpm_kzalloc(hwpm, size)			\

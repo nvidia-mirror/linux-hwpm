@@ -29,22 +29,7 @@
 #ifdef __KERNEL__
 #include <os/linux/timers.h>
 #else
-int tegra_hwpm_timeout_init_impl(struct tegra_hwpm *hwpm,
-	struct tegra_hwpm_timeout *timeout, u32 retries)
-{
-	return -EINVAL;
-}
-
-int tegra_hwpm_timeout_expired_impl(struct tegra_hwpm *hwpm,
-	struct tegra_hwpm_timeout *timeout)
-{
-	return -EINVAL;
-}
-
-void tegra_hwpm_msleep_impl(unsigned int msecs)
-{
-	return -EINVAL;
-}
+#include <os/qnx/timers.h>
 #endif
 
 #define tegra_hwpm_timeout_init(hwpm, timeout, retries)	\

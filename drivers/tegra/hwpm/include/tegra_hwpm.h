@@ -224,8 +224,11 @@ struct hwpm_ip_aperture {
 	u32 device_index;
 
 	/* MMIO device tree aperture - only populated for perfmon */
+#ifdef __KERNEL__
 	void __iomem *dt_mmio;
-
+#else
+	void *dt_mmio;
+#endif
 	/* DT tree name */
 	char name[64];
 
