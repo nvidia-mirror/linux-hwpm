@@ -405,7 +405,7 @@ static int tegra_hwpm_open(struct inode *inode, struct file *filp)
 	}
 
 	if (hwpm->active_chip->clk_rst_set_rate_enable) {
-		ret = tegra_hwpm_clk_rst_set_rate_enable(hwpm_linux);
+		ret = hwpm->active_chip->clk_rst_set_rate_enable(hwpm_linux);
 		if (ret != 0) {
 			goto fail;
 		}
@@ -514,7 +514,7 @@ static int tegra_hwpm_release(struct inode *inode, struct file *filp)
 	}
 
 	if (hwpm->active_chip->clk_rst_disable) {
-		ret = tegra_hwpm_clk_rst_disable(hwpm_linux);
+		ret = hwpm->active_chip->clk_rst_disable(hwpm_linux);
 		if (ret != 0) {
 			tegra_hwpm_err(hwpm, "Failed to release clock");
 			err = ret;

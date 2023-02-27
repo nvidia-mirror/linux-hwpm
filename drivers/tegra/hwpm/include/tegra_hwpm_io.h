@@ -68,6 +68,12 @@ static inline u32 get_field(u32 input_data, u32 mask)
 #define tegra_hwpm_read_sticky_bits(hwpm, reg_base, reg_offset, val) \
 	tegra_hwpm_read_sticky_bits_impl(hwpm, reg_base, reg_offset, val)
 
+#define tegra_hwpm_fake_readl(hwpm, aperture, addr, val)	\
+	tegra_hwpm_fake_readl_impl(hwpm, aperture, addr, val)
+
+#define tegra_hwpm_fake_writel(hwpm, aperture, addr, val)	\
+	tegra_hwpm_fake_writel_impl(hwpm, aperture, addr, val)
+
 #define tegra_hwpm_readl(hwpm, aperture, addr, val)	\
 	tegra_hwpm_readl_impl(hwpm, aperture, addr, val)
 

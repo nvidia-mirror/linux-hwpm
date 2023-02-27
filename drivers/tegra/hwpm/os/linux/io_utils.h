@@ -23,6 +23,10 @@ struct hwpm_ip_aperture;
 
 int tegra_hwpm_read_sticky_bits_impl(struct tegra_soc_hwpm *hwpm,
 	u64 reg_base, u64 reg_offset, u32 *val);
+int tegra_hwpm_fake_readl_impl(struct tegra_soc_hwpm *hwpm,
+	struct hwpm_ip_aperture *aperture, u64 offset, u32 *val);
+int tegra_hwpm_fake_writel_impl(struct tegra_soc_hwpm *hwpm,
+	struct hwpm_ip_aperture *aperture, u64 offset, u32 val);
 int tegra_hwpm_readl_impl(struct tegra_soc_hwpm *hwpm,
 	struct hwpm_ip_aperture *aperture, u64 addr, u32 *val);
 int tegra_hwpm_writel_impl(struct tegra_soc_hwpm *hwpm,
