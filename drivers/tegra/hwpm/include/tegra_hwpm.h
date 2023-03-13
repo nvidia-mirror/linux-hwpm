@@ -146,6 +146,12 @@ struct tegra_hwpm_ip_ops {
 				enum tegra_soc_hwpm_ip_reg_op reg_op,
 				u32 inst_element_index, u64 reg_offset,
 				u32 *reg_data);
+	/*
+	 * fd - is used to store the
+	 * file descriptor of the IP devctl node
+	 * in QNX
+	 */
+	int fd;
 };
 
 /* There are 3 types of HWPM components/apertures */

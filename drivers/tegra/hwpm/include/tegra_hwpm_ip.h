@@ -26,14 +26,11 @@
 
 #ifdef __KERNEL__
 #include <os/linux/ip_utils.h>
-#else
-int tegra_hwpm_complete_ip_register_impl(struct tegra_soc_hwpm *hwpm)
-{
-	return -EINVAL;
-}
-#endif
 
 #define tegra_hwpm_complete_ip_register(hwpm)	\
 	tegra_hwpm_complete_ip_register_impl(hwpm)
+#else
+#include <os/qnx/ip_utils.h>
+#endif
 
 #endif /* TEGRA_HWPM_IP_H */

@@ -62,37 +62,7 @@ static inline u32 get_field(u32 input_data, u32 mask)
 #ifdef __KERNEL__
 #include <os/linux/io_utils.h>
 #else
-int tegra_hwpm_read_sticky_bits_impl(struct tegra_soc_hwpm *hwpm,
-	u64 reg_base, u64 reg_offset, u32 *val)
-{
-	return -EINVAL;
-}
-
-int tegra_hwpm_readl_impl(struct tegra_soc_hwpm *hwpm,
-	struct hwpm_ip_aperture *aperture, u64 addr, u32 *val)
-{
-	return -EINVAL;
-}
-
-int tegra_hwpm_writel_impl(struct tegra_soc_hwpm *hwpm,
-	struct hwpm_ip_aperture *aperture, u64 addr, u32 val)
-{
-	return -EINVAL;
-}
-
-int tegra_hwpm_regops_readl_impl(struct tegra_soc_hwpm *hwpm,
-	struct hwpm_ip_inst *ip_inst, struct hwpm_ip_aperture *aperture,
-	u64 addr, u32 *val)
-{
-	return -EINVAL;
-}
-
-int tegra_hwpm_regops_writel_impl(struct tegra_soc_hwpm *hwpm,
-	struct hwpm_ip_inst *ip_inst, struct hwpm_ip_aperture *aperture,
-	u64 addr, u32 val)
-{
-	return -EINVAL;
-}
+#include <os/qnx/io_utils.h>
 #endif
 
 #define tegra_hwpm_read_sticky_bits(hwpm, reg_base, reg_offset, val) \

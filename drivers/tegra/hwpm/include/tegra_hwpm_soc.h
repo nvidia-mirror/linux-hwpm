@@ -46,56 +46,23 @@ struct hwpm_soc_chip_info {
 #ifdef __KERNEL__
 #include <os/linux/soc_utils.h>
 #else
-u32 tegra_hwpm_get_chip_id_impl(void)
-{
-	return 0U;
-}
+#include <os/qnx/soc_utils.h>
+#define CHIP_ID_UNKNOWN                 0x0U
+#define CHIP_ID_REV_UNKNOWN             0x0U
 
-u32 tegra_hwpm_get_major_rev_impl(void)
-{
-	return 0U;
-}
+#define PLAT_SI                         0x0
+#define PLAT_PRE_SI_QT                  0x1
+#define PLAT_PRE_SI_VDK                 0x8
+#define PLAT_PRE_SI_VSP                 0x9
+#define PLAT_INVALID                    0xF
 
-u32 tegra_hwpm_chip_get_revision_impl(void)
-{
-	return 0U;
-}
+#define TEGRA_FUSE_PRODUCTION_MODE 0x0
 
-u32 tegra_hwpm_get_platform_impl(void)
-{
-	return 0U;
-}
-
-bool tegra_hwpm_is_platform_simulation_impl(void)
-{
-	return false;
-}
-
-bool tegra_hwpm_is_platform_vsp_impl(void)
-{
-	return false;
-}
-
-bool tegra_hwpm_is_platform_silicon_impl(void)
-{
-	return true;
-}
-
-bool tegra_hwpm_is_hypervisor_mode_impl(void)
-{
-	return false;
-}
-
-int tegra_hwpm_fuse_readl_impl(struct tegra_soc_hwpm *hwpm,
-	u64 reg_offset, u32 *val)
-{
-	return -EINVAL;
-}
-
-int tegra_hwpm_fuse_readl_prod_mode_impl(struct tegra_soc_hwpm *hwpm, u32 *val)
-{
-	return -EINVAL;
-}
+struct hwpm_soc_chip_info {
+        u32 chip_id;
+        u32 chip_id_rev;
+        u32 platform;
+};
 
 #endif
 

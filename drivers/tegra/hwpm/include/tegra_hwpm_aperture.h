@@ -27,26 +27,7 @@
 #ifdef __KERNEL__
 #include <os/linux/aperture_utils.h>
 #else
-int tegra_hwpm_perfmon_reserve_impl(struct tegra_soc_hwpm *hwpm,
-	struct hwpm_ip_inst *ip_inst, struct hwpm_ip_aperture *perfmon)
-{
-	return -EINVAL;
-}
-int tegra_hwpm_perfmux_reserve_impl(struct tegra_soc_hwpm *hwpm,
-	struct hwpm_ip_inst *ip_inst, struct hwpm_ip_aperture *perfmux)
-{
-	return -EINVAL;
-}
-int tegra_hwpm_perfmon_release_impl(struct tegra_soc_hwpm *hwpm,
-	struct hwpm_ip_aperture *perfmon)
-{
-	return -EINVAL;
-}
-int tegra_hwpm_perfmux_release_impl(struct tegra_soc_hwpm *hwpm,
-	struct hwpm_ip_aperture *perfmux)
-{
-	return -EINVAL;
-}
+#include <os/qnx/aperture_utils.h>
 #endif
 
 #define tegra_hwpm_perfmon_reserve(hwpm, ip_inst, perfmon)	\
