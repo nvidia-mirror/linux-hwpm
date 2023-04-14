@@ -424,6 +424,7 @@ int t234_hwpm_force_enable_ips(struct tegra_soc_hwpm *hwpm)
 #if defined(CONFIG_T234_HWPM_ALLOW_FORCE_ENABLE)
 
 	/* MSS GPU HUB */
+/*
 #if defined(CONFIG_T234_HWPM_IP_MSS_GPU_HUB)
 	ret = tegra_hwpm_set_fs_info_ip_ops(hwpm, NULL,
 		addr_map_mss_nvlink_1_base_r(),
@@ -434,7 +435,7 @@ int t234_hwpm_force_enable_ips(struct tegra_soc_hwpm *hwpm)
 		return ret;
 	}
 #endif
-
+*/
 	if (tegra_hwpm_is_platform_silicon()) {
 		/* Static IP instances corresponding to silicon */
 		/* VI */
