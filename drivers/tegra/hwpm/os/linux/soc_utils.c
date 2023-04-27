@@ -18,7 +18,7 @@
 #if CONFIG_ACPI
 #include <linux/acpi.h>
 #endif
-#include <soc/tegra/fuse-helper.h>
+#include <soc/tegra/fuse.h>
 
 #include <tegra_hwpm_log.h>
 #include <tegra_hwpm_soc.h>
