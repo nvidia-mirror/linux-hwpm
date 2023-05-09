@@ -41,7 +41,8 @@ int t234_hwpm_perfmon_enable(struct tegra_soc_hwpm *hwpm,
 	/* Enable */
 	tegra_hwpm_dbg(hwpm, hwpm_dbg_bind,
 		"Enabling PERFMON(0x%llx - 0x%llx)",
-		perfmon->start_abs_pa, perfmon->end_abs_pa);
+		(unsigned long long)perfmon->start_abs_pa,
+		(unsigned long long)perfmon->end_abs_pa);
 
 	err = tegra_hwpm_readl(hwpm, perfmon,
 		pmmsys_sys0_enginestatus_r(0), &reg_val);
@@ -80,7 +81,8 @@ int t234_hwpm_perfmon_disable(struct tegra_soc_hwpm *hwpm,
 	/* Disable */
 	tegra_hwpm_dbg(hwpm, hwpm_dbg_release_resource,
 		"Disabling PERFMON(0x%llx - 0x%llx)",
-		perfmon->start_abs_pa, perfmon->end_abs_pa);
+		(unsigned long long)perfmon->start_abs_pa,
+		(unsigned long long)perfmon->end_abs_pa);
 
 	err = tegra_hwpm_readl(hwpm, perfmon, pmmsys_control_r(0), &reg_val);
 	if (err != 0) {

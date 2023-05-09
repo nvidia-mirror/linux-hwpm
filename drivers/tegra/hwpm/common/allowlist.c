@@ -122,8 +122,8 @@ int tegra_hwpm_combine_alist(struct tegra_soc_hwpm *hwpm, u64 *alist)
 	if (func_args.full_alist_idx != hwpm->alist_map->full_alist_size) {
 		tegra_hwpm_err(hwpm, "full_alist_size 0x%llx doesn't match "
 			"max full_alist_idx 0x%llx",
-			hwpm->alist_map->full_alist_size,
-			func_args.full_alist_idx);
+			(unsigned long long)hwpm->alist_map->full_alist_size,
+			(unsigned long long)func_args.full_alist_idx);
 		err = -EINVAL;
 	}
 

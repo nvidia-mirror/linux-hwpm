@@ -52,7 +52,7 @@ int t234_hwpm_extract_ip_ops(struct tegra_soc_hwpm *hwpm,
 		resource_enum, &ip_idx))) {
 		tegra_hwpm_dbg(hwpm, hwpm_dbg_ip_register,
 			"SOC hwpm resource %d (base 0x%llx) is unconfigured",
-			resource_enum, base_address);
+			resource_enum, (unsigned long long)base_address);
 		goto fail;
 	}
 
@@ -102,7 +102,7 @@ int t234_hwpm_extract_ip_ops(struct tegra_soc_hwpm *hwpm,
 			tegra_hwpm_err(hwpm,
 				"Failed to %s fs/ops for IP %d (base 0x%llx)",
 				available == true ? "set" : "reset",
-				ip_idx, base_address);
+				ip_idx, (unsigned long long)base_address);
 			goto fail;
 		}
 		break;
@@ -133,7 +133,7 @@ int t234_hwpm_extract_ip_ops(struct tegra_soc_hwpm *hwpm,
 			if (ret != -ENODEV) {
 				tegra_hwpm_err(hwpm,
 					"IP %d base 0x%llx:Failed to %s fs/ops",
-					ip_idx, base_address,
+					ip_idx, (unsigned long long)base_address,
 					available == true ? "set" : "reset");
 				goto fail;
 			}
@@ -156,7 +156,7 @@ int t234_hwpm_extract_ip_ops(struct tegra_soc_hwpm *hwpm,
 			if (ret != -ENODEV) {
 				tegra_hwpm_err(hwpm,
 					"IP %d base 0x%llx:Failed to %s fs/ops",
-					ip_idx, base_address,
+					ip_idx, (unsigned long long)base_address,
 					available == true ? "set" : "reset");
 				goto fail;
 			}
@@ -179,7 +179,7 @@ int t234_hwpm_extract_ip_ops(struct tegra_soc_hwpm *hwpm,
 			if (ret != -ENODEV) {
 				tegra_hwpm_err(hwpm,
 					"IP %d base 0x%llx:Failed to %s fs/ops",
-					ip_idx, base_address,
+					ip_idx, (unsigned long long)base_address,
 					available == true ? "set" : "reset");
 				goto fail;
 			}

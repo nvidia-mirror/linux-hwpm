@@ -159,9 +159,11 @@ static struct hwpm_ip_inst t234_pva_inst_static_array[
 			.ip_dev = NULL,
 			.hwpm_ip_pm = NULL,
 			.hwpm_ip_reg_op = NULL,
+			.fd = 1,
 		},
 
 		.element_fs_mask = 0U,
+		.dev_name = "/dev/nvpvadebugfs/pva0/hwpm",
 	},
 };
 

@@ -26,6 +26,8 @@
 
 #ifdef __KERNEL__
 #include <os/linux/mem_mgmt_utils.h>
+#else
+#include <os/qnx/mem_mgmt_utils.h>
 #endif
 
 #endif /* TEGRA_HWPM_MEM_MGMT_H */

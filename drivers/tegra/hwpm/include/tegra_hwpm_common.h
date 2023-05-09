@@ -89,5 +89,7 @@ int tegra_hwpm_disable_triggers(struct tegra_soc_hwpm *hwpm);
 int tegra_hwpm_check_status(struct tegra_soc_hwpm *hwpm);
 int tegra_hwpm_release_hw(struct tegra_soc_hwpm *hwpm);
 void tegra_hwpm_release_sw_setup(struct tegra_soc_hwpm *hwpm);
+int tegra_hwpm_update_ip_inst_fs_mask(struct tegra_soc_hwpm *hwpm,
+	u32 ip_idx, u32 a_type, u32 inst_idx, bool available);
 
 #endif /* TEGRA_HWPM_COMMON_H */

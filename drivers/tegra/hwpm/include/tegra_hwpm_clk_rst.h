@@ -27,23 +27,26 @@
 #ifdef __KERNEL__
 #include <os/linux/clk_rst_utils.h>
 #else
-struct tegra_hwpm_os_linux;
+#include <errno.h>
 
-int tegra_hwpm_clk_rst_prepare(struct tegra_hwpm_os_linux *hwpm_linux)
+struct tegra_hwpm_os_qnx;
+
+static inline int tegra_hwpm_clk_rst_prepare(struct tegra_hwpm_os_qnx *hwpm_qnx)
 {
 	return -EINVAL;
 }
 
-int tegra_hwpm_clk_rst_set_rate_enable(struct tegra_hwpm_os_linux *hwpm_linux)
+static inline int tegra_hwpm_clk_rst_set_rate_enable(struct tegra_hwpm_os_qnx *hwpm_qnx)
 {
 	return -EINVAL;
 }
 
-int tegra_hwpm_clk_rst_disable(struct tegra_hwpm_os_linux *hwpm_linux)
+static inline int tegra_hwpm_clk_rst_disable(struct tegra_hwpm_os_qnx *hwpm_qnx)
 {
+	return -EINVAL;
 }
 
-void tegra_hwpm_clk_rst_release(struct tegra_hwpm_os_linux *hwpm_linux)
+static inline void tegra_hwpm_clk_rst_release(struct tegra_hwpm_os_qnx *hwpm_qnx)
 {
 }
 #endif

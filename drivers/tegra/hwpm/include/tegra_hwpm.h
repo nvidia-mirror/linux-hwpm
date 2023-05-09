@@ -40,7 +40,12 @@
 #define TEGRA_HWPM_FUSE_SECURITY_MODE_MASK		BIT(1)
 #define TEGRA_HWPM_FUSE_HWPM_GLOBAL_DISABLE_MASK	BIT(2)
 
+#ifdef __KERNEL__
 struct tegra_hwpm_os_linux;
+#else
+#define ARRAY_SIZE(a)  (sizeof(a) / sizeof(a[0]))
+struct tegra_hwpm_os_qnx;
+#endif
 struct tegra_hwpm_mem_mgmt;
 struct tegra_hwpm_allowlist_map;
 enum tegra_soc_hwpm_ip_reg_op;
@@ -349,6 +354,12 @@ struct hwpm_ip_inst {
 	 * (except for SCF).
 	 */
 	u32 element_fs_mask;
+
+	/*
+	 * dev_name corresponds to the name of the IP debug node that has been
+	 * exposed to perform Regops Read/write operation
+	 */
+	char dev_name[64];
 };
 
 struct hwpm_ip_inst_per_aperture_info {
@@ -424,12 +435,17 @@ struct tegra_soc_hwpm_chip {
 
 	/* Chip HALs */
 	bool (*validate_secondary_hals)(struct tegra_soc_hwpm *hwpm);
-
+#ifdef __KERNEL__
 	int (*clk_rst_prepare)(struct tegra_hwpm_os_linux *hwpm_linux);
 	int (*clk_rst_set_rate_enable)(struct tegra_hwpm_os_linux *hwpm_linux);
 	int (*clk_rst_disable)(struct tegra_hwpm_os_linux *hwpm_linux);
 	void (*clk_rst_release)(struct tegra_hwpm_os_linux *hwpm_linux);
-
+#else
+        int (*clk_rst_prepare)(struct tegra_hwpm_os_qnx *hwpm_qnx);
+        int (*clk_rst_set_rate_enable)(struct tegra_hwpm_os_qnx *hwpm_qnx);
+        int (*clk_rst_disable)(struct tegra_hwpm_os_qnx *hwpm_qnx);
+        void (*clk_rst_release)(struct tegra_hwpm_os_qnx *hwpm_qnx);
+#endif
 	bool (*is_ip_active)(struct tegra_soc_hwpm *hwpm,
 	u32 ip_enum, u32 *config_ip_index);
 	bool (*is_resource_active)(struct tegra_soc_hwpm *hwpm,

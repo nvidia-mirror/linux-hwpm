@@ -26,11 +26,9 @@
 
 #ifdef __KERNEL__
 #include <os/linux/ip_utils.h>
-
-#define tegra_hwpm_complete_ip_register(hwpm)	\
-	tegra_hwpm_complete_ip_register_impl(hwpm)
 #else
 #include <os/qnx/ip_utils.h>
 #endif
-
+#define tegra_hwpm_complete_ip_register(hwpm)   \
+        tegra_hwpm_complete_ip_register_impl(hwpm)
 #endif /* TEGRA_HWPM_IP_H */

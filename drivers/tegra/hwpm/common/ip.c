@@ -55,7 +55,7 @@ int tegra_hwpm_ip_handle_power_mgmt(struct tegra_soc_hwpm *hwpm,
 	return err;
 }
 
-static int tegra_hwpm_update_ip_inst_fs_mask(struct tegra_soc_hwpm *hwpm,
+int tegra_hwpm_update_ip_inst_fs_mask(struct tegra_soc_hwpm *hwpm,
 	u32 ip_idx, u32 a_type, u32 inst_idx, bool available)
 {
 	struct tegra_soc_hwpm_chip *active_chip = hwpm->active_chip;
@@ -147,13 +147,14 @@ int tegra_hwpm_set_fs_info_ip_ops(struct tegra_soc_hwpm *hwpm,
 		&idx, &inst_idx, &element_idx, &element_type);
 	if (!found) {
 		tegra_hwpm_err(hwpm, "Base addr 0x%llx not in IP %d",
-			base_address, idx);
+			(unsigned long long)base_address, idx);
 		return -EINVAL;
 	}
 
 	tegra_hwpm_dbg(hwpm, hwpm_dbg_ip_register,
 		"Found addr 0x%llx IP %d inst_idx %d element_idx %d e_type %d",
-		base_address, idx, inst_idx, element_idx, element_type);
+		(unsigned long long)base_address, idx, inst_idx,
+		element_idx, element_type);
 
 	switch (element_type) {
 	case HWPM_ELEMENT_PERFMON:
@@ -319,7 +320,8 @@ static bool tegra_hwpm_addr_in_single_element(struct tegra_soc_hwpm *hwpm,
 		tegra_hwpm_dbg(hwpm, hwpm_verbose,
 			"IP %d addr 0x%llx inst_idx %d "
 			"a_type %d: element_idx %d not populated",
-			*ip_idx, find_addr, *inst_idx, a_type, *element_idx);
+			*ip_idx, (unsigned long long)find_addr, *inst_idx,
+			a_type, *element_idx);
 		return false;
 	}
 
@@ -330,8 +332,8 @@ static bool tegra_hwpm_addr_in_single_element(struct tegra_soc_hwpm *hwpm,
 			tegra_hwpm_dbg(hwpm, hwpm_dbg_regops,
 				"IP %d addr 0x%llx inst_idx %d "
 				"a_type %d: element_idx %d: not available",
-				*ip_idx, find_addr, *inst_idx, a_type,
-				*element_idx);
+				*ip_idx, (unsigned long long)find_addr,
+				*inst_idx, a_type, *element_idx);
 			return false;
 		}
 
@@ -340,8 +342,8 @@ static bool tegra_hwpm_addr_in_single_element(struct tegra_soc_hwpm *hwpm,
 			(find_addr > element->end_abs_pa)) {
 			tegra_hwpm_err(hwpm, "IP %d addr 0x%llx inst_idx %d "
 				"a_type %d element_idx %d: out of bounds",
-				*ip_idx, find_addr, *inst_idx, a_type,
-				*element_idx);
+				*ip_idx, (unsigned long long)find_addr, *inst_idx,
+				a_type, *element_idx);
 			return false;
 		}
 
@@ -353,8 +355,8 @@ static bool tegra_hwpm_addr_in_single_element(struct tegra_soc_hwpm *hwpm,
 		tegra_hwpm_dbg(hwpm, hwpm_dbg_regops,
 			"IP %d addr 0x%llx inst_idx %d "
 			"a_type %d element_idx %d address not in alist",
-			*ip_idx, find_addr, *inst_idx, a_type,
-			*element_idx);
+			*ip_idx, (unsigned long long)find_addr,
+			*inst_idx, a_type, *element_idx);
 		return false;
 	}
 
@@ -364,8 +366,8 @@ static bool tegra_hwpm_addr_in_single_element(struct tegra_soc_hwpm *hwpm,
 			tegra_hwpm_dbg(hwpm, hwpm_dbg_ip_register,
 				"IP %d addr 0x%llx inst_idx %d "
 				"a_type %d element_idx %d: addr != start addr",
-				*ip_idx, find_addr, *inst_idx, a_type,
-				*element_idx);
+				*ip_idx, (unsigned long long)find_addr, *inst_idx,
+				a_type, *element_idx);
 			return false;
 		}
 		*element_type = element->element_type;
@@ -394,7 +396,7 @@ static bool tegra_hwpm_addr_in_all_elements(struct tegra_soc_hwpm *hwpm,
 	if (e_info->num_element_per_inst == 0U) {
 		tegra_hwpm_dbg(hwpm, hwpm_verbose,
 			"IP %d addr 0x%llx: inst_idx %d no type %d elements",
-			*ip_idx, find_addr, *inst_idx, a_type);
+			*ip_idx, (unsigned long long)find_addr, *inst_idx, a_type);
 		return false;
 	}
 
@@ -403,7 +405,7 @@ static bool tegra_hwpm_addr_in_all_elements(struct tegra_soc_hwpm *hwpm,
 		/* Address not in this instance corresponding to a_type */
 		tegra_hwpm_dbg(hwpm, hwpm_verbose, "IP %d inst_idx %d: "
 			"addr 0x%llx not in type %d elements",
-			*ip_idx, *inst_idx, find_addr, a_type);
+			*ip_idx, *inst_idx, (unsigned long long)find_addr, a_type);
 		return false;
 	}
 
@@ -417,7 +419,7 @@ static bool tegra_hwpm_addr_in_all_elements(struct tegra_soc_hwpm *hwpm,
 	if (idx >= e_info->element_slots) {
 		tegra_hwpm_err(hwpm, "IP %d addr 0x%llx inst_idx %d a_type %d: "
 			"element_idx %d out of bounds",
-			*ip_idx, find_addr, *inst_idx, a_type, idx);
+			*ip_idx, (unsigned long long)find_addr, *inst_idx, a_type, idx);
 		return false;
 	}
 
@@ -444,7 +446,7 @@ static bool tegra_hwpm_addr_in_single_instance(struct tegra_soc_hwpm *hwpm,
 	if (ip_inst == NULL) {
 		tegra_hwpm_dbg(hwpm, hwpm_verbose, "IP %d addr 0x%llx: "
 			"a_type %d inst_idx %d not populated",
-			*ip_idx, find_addr, a_type, *inst_idx);
+			*ip_idx, (unsigned long long)find_addr, a_type, *inst_idx);
 		return false;
 	}
 
@@ -454,7 +456,7 @@ static bool tegra_hwpm_addr_in_single_instance(struct tegra_soc_hwpm *hwpm,
 			tegra_hwpm_dbg(hwpm, hwpm_dbg_regops,
 				"IP %d addr 0x%llx: "
 				"a_type %d inst_idx %d not available",
-				*ip_idx, find_addr, a_type, *inst_idx);
+				*ip_idx, (unsigned long long)find_addr, a_type, *inst_idx);
 			return false;
 		}
 	}
@@ -488,7 +490,7 @@ static bool tegra_hwpm_addr_in_all_instances(struct tegra_soc_hwpm *hwpm,
 	if (idx >= inst_a_info->inst_slots) {
 		tegra_hwpm_err(hwpm, "IP %d addr 0x%llx a_type %d: "
 			"inst_idx %d out of bounds",
-			*ip_idx, find_addr, a_type, idx);
+			*ip_idx, (unsigned long long)find_addr, a_type, idx);
 		return false;
 	}
 
@@ -550,7 +552,7 @@ static bool tegra_hwpm_addr_in_single_ip(struct tegra_soc_hwpm *hwpm,
 			/* Address not in this IP for this a_type */
 			tegra_hwpm_dbg(hwpm, hwpm_verbose,
 				"IP %d addr 0x%llx not in a_type %d elements",
-				*ip_idx, find_addr, a_type);
+				*ip_idx, (unsigned long long)find_addr, a_type);
 			continue;
 		}
 
@@ -630,7 +632,8 @@ bool tegra_hwpm_aperture_for_address(struct tegra_soc_hwpm *hwpm,
 			ip_idx, inst_idx, element_idx, element_type);
 		if (!found) {
 			tegra_hwpm_err(hwpm,
-				"Address 0x%llx not in any IP", find_addr);
+				"Address 0x%llx not in any IP",
+				(unsigned long long)find_addr);
 			return found;
 		}
 	}
@@ -640,7 +643,7 @@ bool tegra_hwpm_aperture_for_address(struct tegra_soc_hwpm *hwpm,
 			ip_idx, inst_idx, element_idx, element_type);
 		if (!found) {
 			tegra_hwpm_err(hwpm, "Address 0x%llx not in IP %d",
-				find_addr, *ip_idx);
+				(unsigned long long)find_addr, *ip_idx);
 			return found;
 		}
 	}

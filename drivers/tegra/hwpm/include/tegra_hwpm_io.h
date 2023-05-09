@@ -24,6 +24,8 @@
 #ifndef TEGRA_HWPM_IO_H
 #define TEGRA_HWPM_IO_H
 
+#include "tegra_hwpm_types.h"
+
 /**
  * Sets a particular field value in input data.
  *
