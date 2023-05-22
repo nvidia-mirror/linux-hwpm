@@ -166,11 +166,11 @@ static struct hwpm_ip_inst t234_nvdla_inst_static_array[
 			.ip_dev = NULL,
 			.hwpm_ip_pm = NULL,
 			.hwpm_ip_reg_op = NULL,
-			.fd = -1,
+			.fd = 1,
 		},
 
 		.element_fs_mask = 0U,
-		.dev_name = "",
+		.dev_name = "/dev/nvdladebugfs/nvdla0/hwpm/ctrl",
 	},
 	{
 		.hw_inst_mask = BIT(1),
@@ -229,11 +229,11 @@ static struct hwpm_ip_inst t234_nvdla_inst_static_array[
 			.ip_dev = NULL,
 			.hwpm_ip_pm = NULL,
 			.hwpm_ip_reg_op = NULL,
-			.fd = -1,
+			.fd = 1,
 		},
 
 		.element_fs_mask = 0U,
-		.dev_name = "",
+		.dev_name = "/dev/nvdladebugfs/nvdla1/hwpm/ctrl",
 	},
 };
 

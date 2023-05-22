@@ -152,9 +152,9 @@ struct tegra_hwpm_ip_ops {
 				u32 inst_element_index, u64 reg_offset,
 				u32 *reg_data);
 	/*
-	 * fd - is used to store the
-	 * file descriptor of the IP devctl node
-	 * in QNX
+	 * fd - is used to store the file descriptor of the IP devctl node in QNX.
+	 * Default is -1, which indicates the IP has no debug node enabled for Reg ops.
+	 * Set to 1 if IP has debug node enabled for Reg ops.
 	 */
 	int fd;
 };
