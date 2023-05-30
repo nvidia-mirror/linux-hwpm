@@ -52,79 +52,55 @@ CONFIG_TEGRA_HWPM_MINIMAL_IP_ENABLE=y
 ccflags-y += -DCONFIG_TEGRA_HWPM_MINIMAL_IP_ENABLE
 endif
 
-ifeq ($(CONFIG_TEGRA_GRHOST_NVDLA),y)
 ccflags-y += -DCONFIG_T234_HWPM_IP_NVDLA
 nvhwpm-t234-objs += hal/t234/ip/nvdla/t234_nvdla.o
-endif
 
-ifeq ($(CONFIG_TEGRA_GRHOST_PVA),y)
 ccflags-y += -DCONFIG_T234_HWPM_IP_PVA
 nvhwpm-t234-objs += hal/t234/ip/pva/t234_pva.o
-endif
 
-ifeq ($(CONFIG_NV_TEGRA_MC),y)
 ccflags-y += -DCONFIG_T234_HWPM_IP_MSS_CHANNEL
 nvhwpm-t234-objs += hal/t234/ip/mss_channel/t234_mss_channel.o
-endif
 
 # Include other IPs if minimal build is not enabled.
 ifneq ($(CONFIG_TEGRA_HWPM_MINIMAL_IP_ENABLE),y)
 ccflags-y += -DCONFIG_T234_HWPM_IP_DISPLAY
 nvhwpm-t234-objs += hal/t234/ip/display/t234_display.o
 
-ifeq ($(CONFIG_TEGRA_GRHOST_ISP),y)
 ccflags-y += -DCONFIG_T234_HWPM_IP_ISP
 nvhwpm-t234-objs += hal/t234/ip/isp/t234_isp.o
-endif
 
-ifeq ($(CONFIG_NVETHERNET),y)
 ccflags-y += -DCONFIG_T234_HWPM_IP_MGBE
 nvhwpm-t234-objs += hal/t234/ip/mgbe/t234_mgbe.o
-endif
 
-ifeq ($(CONFIG_NV_TEGRA_MC),y)
 ccflags-y += -DCONFIG_T234_HWPM_IP_MSS_ISO_NISO_HUBS
 nvhwpm-t234-objs += hal/t234/ip/mss_iso_niso_hubs/t234_mss_iso_niso_hubs.o
 
 ccflags-y += -DCONFIG_T234_HWPM_IP_MSS_MCF
 nvhwpm-t234-objs += hal/t234/ip/mss_mcf/t234_mss_mcf.o
-endif
 
 ccflags-y += -DCONFIG_T234_HWPM_IP_MSS_GPU_HUB
 nvhwpm-t234-objs += hal/t234/ip/mss_gpu_hub/t234_mss_gpu_hub.o
 
-ifeq ($(CONFIG_TEGRA_GRHOST_NVDEC),y)
 ccflags-y += -DCONFIG_T234_HWPM_IP_NVDEC
 nvhwpm-t234-objs += hal/t234/ip/nvdec/t234_nvdec.o
-endif
 
-ifeq ($(CONFIG_TEGRA_GRHOST_NVENC),y)
 ccflags-y += -DCONFIG_T234_HWPM_IP_NVENC
 nvhwpm-t234-objs += hal/t234/ip/nvenc/t234_nvenc.o
-endif
 
-ifeq ($(CONFIG_TEGRA_GRHOST_OFA),y)
 ccflags-y += -DCONFIG_T234_HWPM_IP_OFA
 nvhwpm-t234-objs += hal/t234/ip/ofa/t234_ofa.o
-endif
 
-ifeq ($(CONFIG_PCIE_TEGRA194),y)
 ccflags-y += -DCONFIG_T234_HWPM_IP_PCIE
 nvhwpm-t234-objs += hal/t234/ip/pcie/t234_pcie.o
-endif
 
 ccflags-y += -DCONFIG_T234_HWPM_IP_SCF
 nvhwpm-t234-objs += hal/t234/ip/scf/t234_scf.o
 
-ifeq ($(CONFIG_VIDEO_TEGRA_VI),y)
 ccflags-y += -DCONFIG_T234_HWPM_IP_VI
 nvhwpm-t234-objs += hal/t234/ip/vi/t234_vi.o
-endif
 
-ifeq ($(CONFIG_TEGRA_GRHOST_VIC),y)
 ccflags-y += -DCONFIG_T234_HWPM_IP_VIC
 nvhwpm-t234-objs += hal/t234/ip/vic/t234_vic.o
-endif
 
 endif
 

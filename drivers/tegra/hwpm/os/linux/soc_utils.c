@@ -25,6 +25,9 @@
 #include <os/linux/driver.h>
 
 #if defined(CONFIG_TEGRA_HWPM_OOT)
+#ifdef CONFIG_SOC_TEGRA_PLATFORM_HELPER
+#include <soc/tegra/tegra-platform-helper.h>
+#endif
 #if defined(CONFIG_TEGRA_NEXT1_HWPM)
 #include <os/linux/next1_soc_utils.h>
 #endif
@@ -139,7 +142,11 @@ bool tegra_hwpm_is_platform_vsp_impl(void)
 
 bool tegra_hwpm_is_hypervisor_mode_impl(void)
 {
+#ifdef CONFIG_SOC_TEGRA_PLATFORM_HELPER
+	return tegra_is_hypervisor_mode();
+#else
 	return false;
+#endif
 }
 
 #else /* !CONFIG_TEGRA_HWPM_OOT */
