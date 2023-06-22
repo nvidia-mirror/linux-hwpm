@@ -61,6 +61,15 @@ nvhwpm-t234-objs += hal/t234/ip/pva/t234_pva.o
 ccflags-y += -DCONFIG_T234_HWPM_IP_MSS_CHANNEL
 nvhwpm-t234-objs += hal/t234/ip/mss_channel/t234_mss_channel.o
 
+ccflags-y += -DCONFIG_T234_HWPM_IP_NVENC
+nvhwpm-t234-objs += hal/t234/ip/nvenc/t234_nvenc.o
+
+ccflags-y += -DCONFIG_T234_HWPM_IP_OFA
+nvhwpm-t234-objs += hal/t234/ip/ofa/t234_ofa.o
+
+ccflags-y += -DCONFIG_T234_HWPM_IP_VIC
+nvhwpm-t234-objs += hal/t234/ip/vic/t234_vic.o
+
 # Include other IPs if minimal build is not enabled.
 ifneq ($(CONFIG_TEGRA_HWPM_MINIMAL_IP_ENABLE),y)
 ccflags-y += -DCONFIG_T234_HWPM_IP_DISPLAY
@@ -84,12 +93,6 @@ nvhwpm-t234-objs += hal/t234/ip/mss_gpu_hub/t234_mss_gpu_hub.o
 ccflags-y += -DCONFIG_T234_HWPM_IP_NVDEC
 nvhwpm-t234-objs += hal/t234/ip/nvdec/t234_nvdec.o
 
-ccflags-y += -DCONFIG_T234_HWPM_IP_NVENC
-nvhwpm-t234-objs += hal/t234/ip/nvenc/t234_nvenc.o
-
-ccflags-y += -DCONFIG_T234_HWPM_IP_OFA
-nvhwpm-t234-objs += hal/t234/ip/ofa/t234_ofa.o
-
 ccflags-y += -DCONFIG_T234_HWPM_IP_PCIE
 nvhwpm-t234-objs += hal/t234/ip/pcie/t234_pcie.o
 
@@ -98,9 +101,6 @@ nvhwpm-t234-objs += hal/t234/ip/scf/t234_scf.o
 
 ccflags-y += -DCONFIG_T234_HWPM_IP_VI
 nvhwpm-t234-objs += hal/t234/ip/vi/t234_vi.o
-
-ccflags-y += -DCONFIG_T234_HWPM_IP_VIC
-nvhwpm-t234-objs += hal/t234/ip/vic/t234_vic.o
 
 endif
 
