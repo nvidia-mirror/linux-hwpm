@@ -17,9 +17,11 @@
 #ifndef TEGRA_HWPM_OS_LINUX_MEM_MGMT_UTILS_H
 #define TEGRA_HWPM_OS_LINUX_MEM_MGMT_UTILS_H
 
+#include <nvidia/conftest.h>
+
 #include <linux/types.h>
 #include <linux/version.h>
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 18, 0)
+#if defined(NV_LINUX_IOSYS_MAP_H_PRESENT)
 #include <linux/iosys-map.h>
 #else
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 11, 0)
@@ -49,7 +51,7 @@ struct tegra_hwpm_mem_mgmt {
 	struct dma_buf *mem_bytes_dma_buf;
 	struct dma_buf_attachment *mem_bytes_attach;
 	void *mem_bytes_kernel;
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 18, 0)
+#if defined(NV_LINUX_IOSYS_MAP_H_PRESENT)
 	struct iosys_map mem_bytes_map;
 #else
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 11, 0)

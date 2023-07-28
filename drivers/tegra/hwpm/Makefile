@@ -1,4 +1,4 @@
-# Copyright (c) 2022, NVIDIA CORPORATION. All rights reserved.
+# Copyright (c) 2022-2023, NVIDIA CORPORATION. All rights reserved.
 #
 # Tegra SOC HWPM
 #
@@ -25,6 +25,7 @@ ccflags-y += -DCONFIG_TEGRA_HWPM_OOT
 CONFIG_TEGRA_FUSE_UPSTREAM := y
 ccflags-y += -DCONFIG_TEGRA_FUSE_UPSTREAM
 
+LINUXINCLUDE += -I$(srctree.nvconftest)
 LINUXINCLUDE += -I$(srctree.hwpm)/include
 LINUXINCLUDE += -I$(srctree.hwpm)/drivers/tegra/hwpm/include
 LINUXINCLUDE += -I$(srctree.hwpm)/drivers/tegra/hwpm
