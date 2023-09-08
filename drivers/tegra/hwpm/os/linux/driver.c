@@ -14,6 +14,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <nvidia/conftest.h>
+
 #include <linux/of.h>
 #include <linux/of_address.h>
 #include <linux/module.h>
@@ -50,10 +52,10 @@ static const struct of_device_id tegra_soc_hwpm_of_match[] = {
 };
 MODULE_DEVICE_TABLE(of, tegra_soc_hwpm_of_match);
 
-#if (LINUX_VERSION_CODE < KERNEL_VERSION(6, 2, 0))
-static char *tegra_hwpm_get_devnode(struct device *dev, umode_t *mode)
-#else
+#if defined(NV_CLASS_STRUCT_DEVNODE_HAS_CONST_DEV_ARG)
 static char *tegra_hwpm_get_devnode(const struct device *dev, umode_t *mode)
+#else
+static char *tegra_hwpm_get_devnode(struct device *dev, umode_t *mode)
 #endif
 {
 	if (!mode) {
