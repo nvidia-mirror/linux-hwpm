@@ -457,8 +457,13 @@ int tegra_hwpm_map_update_allowlist(struct tegra_soc_hwpm *hwpm,
 		goto fail;
 	}
 
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(6, 5, 0))
 	pinned_pages = get_user_pages(user_va & PAGE_MASK,
 		hwpm->alist_map->num_pages, 0, hwpm->alist_map->pages, NULL);
+#else
+	pinned_pages = get_user_pages(user_va & PAGE_MASK,
+		hwpm->alist_map->num_pages, 0, hwpm->alist_map->pages);
+#endif
 	if (pinned_pages != hwpm->alist_map->num_pages) {
 		tegra_hwpm_err(hwpm, "Requested %llu pages / Got %ld pages",
 			hwpm->alist_map->num_pages, pinned_pages);
