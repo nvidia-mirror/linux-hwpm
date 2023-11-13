@@ -23,7 +23,6 @@
 #include <linux/slab.h>
 #include <linux/dma-buf.h>
 #include <linux/debugfs.h>
-#include <linux/version.h>
 
 #include <tegra_hwpm.h>
 #include <tegra_hwpm_ip.h>
@@ -112,9 +111,6 @@ static int tegra_hwpm_probe(struct platform_device *pdev)
 	hwpm_linux->pdev = pdev;
 	hwpm_linux->dev = &pdev->dev;
 	hwpm_linux->np = pdev->dev.of_node;
-#if (LINUX_VERSION_CODE < KERNEL_VERSION(6, 4, 0))
-	hwpm_linux->class.owner = THIS_MODULE;
-#endif
 	hwpm_linux->class.name = TEGRA_SOC_HWPM_MODULE_NAME;
 
 	hwpm = &hwpm_linux->hwpm;
